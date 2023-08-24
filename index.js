@@ -14,6 +14,10 @@ const checkCodeMiddleware = (req, res, next) => {
   }
 };
 
+app.get("/", checkCodeMiddleware, (_req, res) => {
+  res.send("home page connect").end();
+});
+
 app.get("/allemployee", checkCodeMiddleware, async (_req, res) => {
   const result = await getAllEmployee();
   res.status(200);
