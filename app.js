@@ -4,7 +4,7 @@ import swaggerUi from "swagger-ui-express";
 import swaggerFile from "./swagger_output.json" assert { type: "json" };
 
 const app = express();
-// app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerFile));
+app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 const checkCodeMiddleware = (req, res, next) => {
   if (req) {
