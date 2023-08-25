@@ -1,6 +1,8 @@
-import mysql from "mysql2";
-import dotenv from "dotenv";
-dotenv.config();
+// import mysql from "mysql2";
+// import dotenv from "dotenv";
+// dotenv.config();
+require("dotenv").config();
+const mysql = require("mysql2");
 
 const pool = mysql
   .createPool({
@@ -12,12 +14,12 @@ const pool = mysql
   })
   .promise();
 
-export const getAllEmployee = async () => {
+module.exports.getAllEmployee = async () => {
   const [rows] = await pool.query("SELECT * FROM employee");
   return rows;
 };
 
-export const getEmployee = async (employeeId) => {
+module.exports.getEmployee = async (employeeId) => {
   const [rows] = await pool.query(
     `
   SELECT * FROM employee
@@ -28,7 +30,7 @@ export const getEmployee = async (employeeId) => {
   return rows;
 };
 
-export const findNewEmployee = async (
+module.exports.findNewEmployee = async (
   employeeId = "0000",
   name,
   sex,
@@ -47,8 +49,9 @@ export const findNewEmployee = async (
   return result;
 };
 
-const allEmployee = await getAllEmployee();
-const singleEmployee = await getEmployee(211);
+// 因為改成 commonjs 所以就不能在使用了
+// const allEmployee = await getAllEmployee();
+// const singleEmployee = await getEmployee(211);
 // const newEmployee = await findNewEmployee(
 //   "211",
 //   "大B",
@@ -58,7 +61,7 @@ const singleEmployee = await getEmployee(211);
 //   "3",
 //   null
 // );
-console.log(allEmployee);
+// console.log(allEmployee);
 
 // pool.getConnection(function (err, connection) {
 //   if (err) {
